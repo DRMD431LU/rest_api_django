@@ -1,3 +1,5 @@
+import json
+import pdb
 
 from django.conf import settings
 from django.core.serializers import serialize
@@ -9,8 +11,16 @@ def upload_update_image(instance, filename):
 
 
 class UpdateQuerySet(models.QuerySet):
+    pass
+    # def serialize(self, ):
+    #     qs = self
+    #     return serialize('json', qs, fields=('user', 'content', 'image'))
+
     def serialize(self, ):
         qs = self
+        final_array = []
+        for obj in qs:
+            final_array.append(obj.serialize())
         return serialize('json', qs, fields=('user', 'content', 'image'))
 
 
@@ -34,4 +44,10 @@ class Update(models.Model):
         return self.content or ""
 
     def serialize(self):
-        return serialize("json", [self], fields=('user', 'content', 'image'))
+        json_data = serialize("json", [self], fields=(
+            'user', 'content', 'image'))
+        struct = json.loads(json_data)
+        print(struct, "struct")
+        data = json.dumps(struct[0]['fields'])
+        print(data)
+        return data
