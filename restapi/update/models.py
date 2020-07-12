@@ -11,17 +11,17 @@ def upload_update_image(instance, filename):
 
 
 class UpdateQuerySet(models.QuerySet):
-    pass
     # def serialize(self, ):
     #     qs = self
     #     return serialize('json', qs, fields=('user', 'content', 'image'))
 
     def serialize(self, ):
-        qs = self
-        final_array = []
-        for obj in qs:
-            final_array.append(obj.serialize())
-        return serialize('json', qs, fields=('user', 'content', 'image'))
+        list_values = list(self.values("user", "content","image"))
+        #qs = self
+        #final_array = []
+        #for obj in qs:
+        #final_array.append(obj.serialize())
+        return json.dumps(list_values) #serialize('json', qs, fields=('user', 'content', 'image'))
 
 
 class UpdateManager(models.Manager):
@@ -47,7 +47,7 @@ class Update(models.Model):
         json_data = serialize("json", [self], fields=(
             'user', 'content', 'image'))
         struct = json.loads(json_data)
-        print(struct, "struct")
+        #print(struct, "struct")
         data = json.dumps(struct[0]['fields'])
         print(data)
         return data
