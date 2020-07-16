@@ -1,3 +1,9 @@
+"""
+main.py
+====================================
+The core module of my example project
+"""
+
 import json
 from rest_framework import generics, mixins
 from rest_framework.views import APIView
@@ -9,6 +15,7 @@ from .serializers import StatusSerializer
 
 
 def is_json(json_data):
+    """An example docstring for a class definition."""
     try:
         real_json = json.loads(json_data)
         is_valid = True
