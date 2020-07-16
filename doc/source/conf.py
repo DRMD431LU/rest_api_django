@@ -12,12 +12,15 @@
 #
 import os
 import sys
+from django.conf import settings
+import django
 
 root = os.path.dirname(os.path.abspath('..'))
 restapi = f"{root}/restapi"
 sys.path.insert(0, restapi)
-
-
+os.environ['DJANGO_SETTINGS_MODULE'] = 'restapi.settings'
+django.setup()
+#settings.configure()
 # -- Project information -----------------------------------------------------
 
 project = 'restapi'

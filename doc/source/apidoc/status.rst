@@ -53,13 +53,6 @@ status.tests module
    :undoc-members:
    :show-inheritance:
 
-status.views module
--------------------
-
-.. automodule:: status.views
-   :members:
-   :undoc-members:
-   :show-inheritance:
 
 
 Module contents
