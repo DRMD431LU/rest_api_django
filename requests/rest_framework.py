@@ -34,12 +34,12 @@ def do(method='get', data={}, is_json=True):
     return r
 
 
-do_img( method='post',
-        data={'user':1, 'content':''},
-        is_json=False, img_path=image_path)
+# do_img( method='post',
+#         data={'user':1, 'content':''},
+#         is_json=False, img_path=image_path)
 
 do_img( method='put',
-        data={'id': 1, 'user':1, 'content':'updating content'},
+        data={'id': 1, 'user':1, 'content':'updating content V:'},
         is_json=False, img_path=image_path)
 
 

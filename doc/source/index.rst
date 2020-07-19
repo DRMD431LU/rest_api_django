@@ -8,9 +8,8 @@ Welcome to restapi's documentation!
    :caption: Contents:
 
 
-    api <api.rst>
-    api2 <apidoc.status.rst>
-
+    api <api>
+    api2 <apidoc/modules.rst>
 
 
 Indices and tables

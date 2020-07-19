@@ -23,6 +23,9 @@ def is_json(json_data):
         is_valid = False
     return is_valid
 
+
+
+
 class StatusAPIView(
     mixins.CreateModelMixin,
     mixins.RetrieveModelMixin,
@@ -97,11 +100,11 @@ class StatusAPIView(
         if is_json(body_):
             json_data = json.loads(request.body)
         new_passed_id = json_data.get('id', None)
-        passed_id = url_passed_id or new_passed_id or None
+        print(request.data)
+        requested_id = request.data.get('id')
+        passed_id = url_passed_id or new_passed_id or requested_id or None
         self.passed_id = passed_id
-        if passed_id is not None or passed_id is not "":
-            return self.retrieve(request, *args, **kw)
-        return super().get(request, *args, **kw)
+        return self.update(request, *args, **kw)
 
     def delete(self, request, *args, **kw):
         url_passed_id = request.GET.get('id', None)
